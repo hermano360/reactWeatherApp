@@ -10,15 +10,15 @@ module.exports = {
 
     return axios.get(requestUrl).then(function(res){
       if(res.data.cod && res.data.message){
-        throw new Error(res.data.message);
+        throw new Error(res);
       } else {
         return {
           temp:res.data.main.temp,
-          location: res.data.name}
-          ;
+          location: res.data.name
+        }
       }
-    }, function(res){
-      throw new Error(res.data.message);
+    }, function(err){
+      throw new Error('City weather information not available');
     });
   }
 }
